@@ -5,6 +5,8 @@ from sklearn.metrics import (
     accuracy_score, matthews_corrcoef
 )
 
+# Partly adapted from https://github.com/jannisborn/covid19_ultrasound
+
 def mcc_multiclass(y_true, y_pred):
     """
     MCC score for multiclass problem

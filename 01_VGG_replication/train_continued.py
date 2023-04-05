@@ -1,3 +1,5 @@
+# Adapted from https://github.com/jannisborn/covid19_ultrasound
+
 print("Starting imports")
 import argparse
 import os
