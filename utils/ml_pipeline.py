@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.svm import LinearSVC, LinearSVR
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression, ElasticNet, LinearRegression, Ridge
-from xgboost import XGBClassifier, XGBRegressor
+#from xgboost import XGBClassifier, XGBRegressor
 
 # Pipeline
 from sklearn.model_selection import cross_validate,StratifiedKFold, KFold, GroupKFold, StratifiedGroupKFold #,RepeatedStratifiedKFold
@@ -55,7 +55,7 @@ REGRESSION_MODELS = { "LR" : LinearRegression(),
                     "ElasticNet" : ElasticNet(),
                     "SVR" : LinearSVR(max_iter=10000),
                     "RF" : RandomForestRegressor(),
-                    "XGB" : XGBRegressor(),
+                    #"XGB" : XGBRegressor(),
                     }
 
 REGRESSION_METRICS = { "r2" : "r2",

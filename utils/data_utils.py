@@ -1,22 +1,24 @@
 import os
 import pandas as pd
+import sys; sys.path.insert(0,'../')
+from config import CLUSTER_USERNAME
 
+# Path to a data sample used for local testing. Not relevant for the final results.
 SAMPLE_PATH = "/Users/matthiasrichter/Library/CloudStorage/OneDrive-Personal/Studium/Masterthesis/Sample"
 
 def get_drive_location():
+    # This was used for local testing
     if os.environ["USER"] == "matthiasrichter":
         #Local Matthias
         drive_location = "/Volumes"
-    elif os.environ["USER"] == "mrichte":
-        #Remote Matthias
-        drive_location = "/itet-stor"
     else:
-        raise ValueError("Unknown user")
+        # Cluster location to the data & models
+        drive_location = "/itet-stor"
     return drive_location
 
 def get_data_location():
     drive_location = get_drive_location()
-    return os.path.join(drive_location, "mrichte/covlus_bmicnas02/")
+    return os.path.join(drive_location, CLUSTER_USERNAME, "covlus_bmicnas02/")
 
 def get_clinical_df():
     DATA_PATH = get_data_location()

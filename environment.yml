@@ -1,12 +1,11 @@
-name: LUS4covid
+name: DL4LUS
 channels:
   - conda-forge
-  - apple
 dependencies:
-  - gudhi=3.7.0
-  - ipykernel=6.15.3
-  - jupyter=1.0.0
-  - notebook=6.4.11
+  - jupyter
+  - ipykernel
+  - ipywidgets
+  - nb_conda_kernels
   - pandas=1.4.2
   - pip=22.2.2
   - plotly=5.10.0
@@ -15,7 +14,6 @@ dependencies:
   - scikit-image=0.19.3
   - seaborn=0.11.2
   - statannot=0.2.3
-  - tensorflow-deps=2.8.0
   - tqdm=4.64.1
   - openpyxl
   - pip:
@@ -25,6 +23,3 @@ dependencies:
     - scikit-tda==1.0.0
     - scikit-video==1.1.11
     - scipy==1.8.0
-    - tensorflow-macos==2.8.0
-    - tensorflow-metal==0.4.0
-    - xgboost==1.7.2
