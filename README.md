@@ -1,6 +1,6 @@
 # **Masterthesis**: Deep Learning Models for Lung Ultrasound Analysis: Validation, Evidence Aggregation, and Clinical Factors in COVID-19 Diagnosis
 
-This Repository contains all the code used to produce the results of my master thesis. The thesis is available [here](). At the core of the thesis is the validation of three seminal deep learning approaches for automated COVID-19 diagnosis in lung ultrasound on the novel Maastricht data set.
+This Repository contains all the code used to produce the results of my master thesis. The thesis is available [here]() (to be added). At the core of the thesis is the validation of three seminal deep learning approaches for automated COVID-19 diagnosis in lung ultrasound on the novel Maastricht data set.
 The three approaches are:
 
 * [VGG16 by Born et al](https://www.mdpi.com/2076-3417/11/2/672)
@@ -10,7 +10,7 @@ The three approaches are:
  
 ![Figure 1: Overview figure for the thesis](Figures/MA_overview_clean_1.1.png)
 
-As of the time of writing this thesis the Maastricht data set is not yet publically available. Therefore, the repository assumes that the data set is located at a disc location outside this repository. Similarly, the covEcho model and the segmentation model from the Roy et al. publication are not public but have been privately shared with us by the respective authors. This repository therefore assumes that the models have been downloaded and the respective code has been used to predict all frames of the Maastricht data set. The results of these predictions are then used to evaluate the models.
+As of the time of writing this thesis the Maastricht data set is not yet publically available. Therefore, the repository assumes that the data set is located at a disc location outside this repository and has been cropped using according preprocessing steps which will be published along with the data. Similarly, the covEcho model and the segmentation model from the Roy et al. publication are not public but have been privately shared with us by the respective authors. This repository therefore assumes that the models have been downloaded and the respective code has been used to predict all frames of the Maastricht data set. The results of these predictions are then used to evaluate the models.
 
 The main files specifying the data mapping are the `load_datasets.py`file in the `data` folder and the `data_utils.py` file in the `utils` folder. To run the code the respective paths need to be adjusted to the location of the data.
 
