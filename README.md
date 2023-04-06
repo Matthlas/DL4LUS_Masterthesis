@@ -10,17 +10,34 @@ The three approaches are:
  
 ![Figure 1: Overview figure for the thesis](Figures/MA_overview_clean_1.1.png)
 
+## Data
+
 As of the time of writing this thesis the Maastricht data set is not yet publically available. Therefore, the repository assumes that the data set is located at a disc location outside this repository and has been cropped using according preprocessing steps which will be published along with the data. Similarly, the covEcho model and the segmentation model from the Roy et al. publication are not public but have been privately shared with us by the respective authors. This repository therefore assumes that the models have been downloaded and the respective code has been used to predict all frames of the Maastricht data set. The results of these predictions are then used to evaluate the models.
 
-The main files specifying the data mapping are the `load_datasets.py`file in the `data` folder and the `data_utils.py` file in the `utils` folder. To run the code the respective paths need to be adjusted to the location of the data.
+If you have access to the data repository and the cluster, you can simply insert your username in the `cluster_username` variable in the `config.py` file. When running the scripts and Notebooks from the cluster this variable will be used throughout the code to reference the data location.
+
+To run the Notebooks on the cluster you can either open the repository file via remote shh in a jupyter compatible IDE like VScode or you can start a notebook job on the cluster by running `sbatch start_jupyter.sh`. 
+
+If you do not have direct access to the cluster but have the data you will have to adjust the data path according to you storage structure. The main files specifying the data mapping are the `load_datasets.py`file in the `data` folder and the `data_utils.py` file in the `utils` folder. To run the code the respective paths need to be adjusted to the location of the data.
+
+## Installation
 
 The thesis is building upon the work of [Born et al.](https://github.com/jannisborn/covid19_ultrasound). To be able to run the code, especially the training of the VGG16 models, their `pocovidnet` package needs to be installed. Details for the installation can be found in the respective [repository page](https://github.com/jannisborn/covid19_ultrasound/tree/master/pocovidnet).
 
 To run the code successfully install all required packages using the `environment.yml` file. The environment can be created using the command:
 
-```conda env create -f environment.yml```
+```
+conda env create -f environment.yml
+```
 
-This environment was created to run the code on a machine using an Apple M1 chip. The respective Tensorflow installations can be modified to run on other machines. A slightly different environment was used for training on the ETH Cluster.
+If you want to run the Notebooks in this repo in case the new environment does not automatically appear as kernel in the options you might also have to explcitly install the kernel by running:
+
+```
+conda activate DL4LUS
+python -m ipykernel install --user --name=DL4LUS
+```
+
+This environment was created to run the code on a machine using an Apple M1 chip. The respective Tensorflow installations can be modified to run on other machines. A slightly different environment was used for training on the ETH Cluster. Tensorflow is only required for the VGG16 model training in this repo. If you do not want to train the VGG16 models you can remove the tensorflow package from the environment.
 
 ## Contents
 
@@ -54,7 +71,7 @@ The central folders for the thesis results & analysis. They contain their own RE
 
 
 ### Notebooks:
-Since the Maastricht data has not been published as of writing this all Output cells in the Notebooks have been cleared due to data privacy reasons.
+Since the Maastricht data has not been published as of writing this some output cells in the Notebooks have been cleared due to data privacy reasons.
 * `clinical_data_analysis.ipynb`: Notebook analyzing the clinical variables of the Maastricht data set.
 * `manual_severity_analysis.ipynb`: Notebook analyzing the manual severity scores assigned by medical experts to the Maastricht data set videos.
 * `predictions_across_models_analysis.ipynb`: Notebook evaluating the VGG16 models on the Maastricht data set. Assumes that the Notebooks in the `02_covEcho` and `03_Roy_segmentation` folders have been run to produce the predictions of the covEcho and the segmentation model.
