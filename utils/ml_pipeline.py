@@ -97,7 +97,7 @@ class ModelEvaluation:
             self.cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=self.SEED)
             self.group_cv = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=self.SEED)
 
-    def train_models(self, X, y, groups=None, plot=True, verbose=False, return_train_scores=False, return_model_predictions=False):
+    def train_models(self, X, y, groups=None, plot=True, verbose=False, return_train_scores=False, return_model_predictions=False, return_std=False):
 
         # If return_model_predictions is not false it must be a df with the same index as X containing the video_name variable
         if return_model_predictions is not False:
@@ -138,9 +138,12 @@ class ModelEvaluation:
 
 
         model_performance_mean = model_perfomance.groupby("model").mean().drop(columns=["fit_time", "score_time"])
+        model_performance_std = model_perfomance.groupby("model").std().drop(columns=["fit_time", "score_time"])
 
         if plot:
             self.plot_model_performance(model_perfomance, model_performance_mean, X, y)
+
+        return_tuple = (model_perfomance, model_performance_mean)
 
         # Add predictions
         if return_model_predictions is not False:
@@ -149,9 +152,14 @@ class ModelEvaluation:
             predictions = self.pivot_predictions(model_perfomance)
             # Drop unnecessary columns from model_perfomance
             model_perfomance = model_perfomance.drop(columns=["estimator", "X", "y", "pred_idx", "prediction", "predictions"])
-            return model_perfomance, model_performance_mean, predictions
-        else:
-            return model_perfomance, model_performance_mean
+            # return model_perfomance, model_performance_mean, predictions
+            return_tuple = return_tuple + (predictions,)
+        
+        # Add std
+        if return_std:
+            return_tuple = return_tuple + (model_performance_std,)
+        
+        return return_tuple
 
     def plot_model_performance(self, model_perfomance, model_performance_mean, X, y):
         # Plot model performance with error bars
